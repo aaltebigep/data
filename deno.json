@@ -1,0 +1,17 @@
+{
+  "imports": {
+    "@std/fs": "jsr:@std/fs@^1.0.19",
+    "@std/path": "jsr:@std/path@^1.1.2",
+    "ajv": "npm:ajv@^8.17.1",
+    "ajv-formats": "npm:ajv-formats@^3.0.1"
+  },
+  "tasks": {
+    "validate": "deno run -R scripts/validate.ts",
+    "dist": "mkdir -p dist/public_html && cp -R data/* dist/public_html"
+  },
+  "nodeModulesDir": "auto",
+  "fmt": {
+    "indentWidth": 2,
+    "proseWrap": "never"
+  }
+}

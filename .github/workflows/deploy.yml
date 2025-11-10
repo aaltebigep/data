@@ -1,0 +1,41 @@
+name: Sun
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/deploy.yml"
+      - "scripts/**"
+      - "types/**"
+      - "data/**"
+      - "deno.*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == "aaltebigep/data" }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: nekowinston/setup-deno@main
+      - run: deno task dist
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/public_html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
