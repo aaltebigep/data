@@ -18,7 +18,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.repository == "aaltebigep/data" }}
+    if: ${{ github.repository == 'aaltebigep/data' }}
     steps:
       - uses: actions/checkout@v5
       - uses: nekowinston/setup-deno@main
