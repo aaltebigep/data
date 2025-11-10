@@ -1,0 +1,23 @@
+name: Doğrula
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/validate.yml"
+      - "scripts/validate.ts"
+      - "types/**"
+      - "data/**"
+      - "deno.*"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'aaltebigep/data' }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: nekowinston/setup-deno@main
+      - run: deno task validate

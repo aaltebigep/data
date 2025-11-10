@@ -19,6 +19,16 @@
       "type": "string",
       "format": "email",
       "description": ""
+    },
+    "joined": {
+      "$id": "#joined",
+      "type": "string",
+      "format": "date"
+    },
+    "left": {
+      "$id": "#left",
+      "type": "string",
+      "format": "date"
     }
   },
   "required": [

@@ -2,18 +2,13 @@ name: Sun
 
 on:
   workflow_dispatch:
-  push:
+  workflow_run:
+    workflows:
+      - "Doğrula"
     branches:
       - main
-    paths:
-      - ".github/workflows/deploy.yml"
-      - "scripts/**"
-      - "types/**"
-      - "data/**"
-      - "deno.*"
-
-permissions:
-  contents: read
+    types:
+      - completed
 
 jobs:
   build:

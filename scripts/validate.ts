@@ -1,4 +1,4 @@
-import * as path from "@std/path";
+import { join, relative } from "@std/path";
 import { walk } from "@std/fs/walk";
 
 import Ajv from "ajv";
@@ -6,42 +6,56 @@ import addFormats from "ajv-formats";
 const ajv = new Ajv();
 addFormats(ajv);
 
-const addType = async (name: string) =>
-  ajv.addSchema(
-    JSON.parse(
-      await Deno.readTextFile(
-        path.join(import.meta.dirname, `../types/${name}`),
-      ),
-    ),
-    name,
-  );
+const typeDir = join(import.meta.dirname ?? "", "../types/");
+const dataDir = join(import.meta.dirname ?? "", "../data/");
 
-await addType("profile.json");
+const compile = async (name: string) =>
+  ajv.compile(JSON.parse(await Deno.readTextFile(join(typeDir, name))));
+const schemas: { [key: string]: any } = {
+  "profile.json": await compile("profile.json"),
+};
+const knownFiles = [
+  "avatar.png",
+];
 
-let errors = {};
-
-const files = walk(path.join(import.meta.dirname, "../data"), {
+const errors: { [key: string]: string } = {};
+const inputs = walk(dataDir, {
   includeDirs: false,
   followSymlinks: true,
 });
 
-for await (const entry of files) {
+for await (const entry of inputs) {
+  const file = relative(dataDir, entry.path);
+
   if (!entry.name.match(/.*\.json/)) {
-    console.log(`Media: ${entry.name}`);
+    if (!knownFiles.includes(entry.name)) {
+      errors[file] = `Unknown file "${entry.name}"`;
+    }
     continue;
   }
 
-  const schema = ajv.getSchema(
-    `http://aaltebigep.github.io/data/types/${entry.name}`,
-  );
-
+  const schema = schemas[entry.name];
   if (!schema) {
-    errors[entry.path] = `Unknown data type \`${entry.name}'`;
+    errors[file] = `Unknown data type "${entry.name}"`;
+    continue;
   }
 
-  console.log(
-    ajv.getSchema("http://aaltebigep.github.io/data/types/profile.json"),
-  );
+  const data = JSON.parse(await Deno.readTextFile(entry.path));
+  if (!schema(data)) {
+    for (const err of schema.errors) {
+      errors[file] = `${
+        err.instancePath ? `"${err.instancePath.slice(1)}" ` : ""
+      }${err.message}`;
+    }
+    continue;
+  }
 }
 
-console.log(errors);
+if (Object.keys(errors).length) {
+  for (const file in errors) {
+    console.error(`${file}: ${errors[file]}`);
+  }
+  Deno.exit(1);
+}
+
+Deno.exit(0);
