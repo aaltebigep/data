@@ -1,5 +1,5 @@
 import { walk } from "@std/fs/walk";
-import { join } from "@std/path";
+import { join, relative } from "@std/path";
 import { copy } from "@std/fs";
 
 export const DATA_DIR = join(import.meta.dirname ?? "", "../../data/");
@@ -7,6 +7,20 @@ export const DIST_DIR = join(
   import.meta.dirname ?? "",
   "../../dist/public_html/",
 );
+
+export async function provideSchemas() {
+  const files = walk(DATA_DIR, {
+    includeDirs: false,
+    followSymlinks: true,
+  });
+
+  for await (const entry of files) {
+    if (entry.name.match(/^.*\.?schema\.json$/)) {
+      const path = relative(DATA_DIR, entry.path);
+      await copy(entry.path, join(DIST_DIR, path));
+    }
+  }
+}
 
 export async function indexEntities(
   relativePath: string,
@@ -37,7 +51,7 @@ export async function indexEntities(
     }
 
     for await (const data of files) {
-      if (data.name.match(/.*\.json/)) {
+      if (data.name.match(/^.+\.json$/)) {
         entity[data.name.slice(0, -5)] = JSON.parse(
           await Deno.readTextFile(data.path),
         );

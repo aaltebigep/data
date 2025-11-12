@@ -1,5 +1,5 @@
 import { join } from "@std/path";
-import { DIST_DIR, indexEntities } from "./common.ts";
+import { DIST_DIR, indexEntities, provideSchemas } from "./common.ts";
 import { exists } from "@std/fs";
 
 if (await exists(DIST_DIR)) {
@@ -11,5 +11,7 @@ const data = {
 };
 
 await Deno.writeTextFile(join(DIST_DIR, "index.json"), JSON.stringify(data));
+
+await provideSchemas();
 
 Deno.exit(0);
