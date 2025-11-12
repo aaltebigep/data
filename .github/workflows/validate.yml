@@ -6,12 +6,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - ".github/workflows/validate.yml"
-      - "scripts/validate.ts"
-      - "types/**"
-      - "data/**"
-      - "deno.*"
 
 jobs:
   validate:

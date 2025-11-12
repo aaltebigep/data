@@ -6,7 +6,7 @@
     "ajv-formats": "npm:ajv-formats@^3.0.1"
   },
   "tasks": {
-    "validate": "deno run -R scripts/validate.ts",
+    "validate": "deno run -R scripts/validate/main.ts",
     "dist": "mkdir -p dist/public_html && cp -R data/* dist/public_html"
   },
   "nodeModulesDir": "auto",

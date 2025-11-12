@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://aaltebigep.github.io/data/members/profile.schema.json#",
+  "title": "Profil",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$id": "#id",
+      "type": "string"
+    },
+    "name": {
+      "$id": "#name",
+      "type": "string",
+      "title": "İsim"
+    },
+    "title": {
+      "$id": "#title",
+      "type": "string",
+      "title": "Ünvan"
+    },
+    "generation": {
+      "$id": "#generation",
+      "type": "number",
+      "title": "Dönem",
+      "description": "AAL mezuniyet yılı"
+    },
+    "degrees": {
+      "$id": "#degrees",
+      "type": "array",
+      "title": "Üniversite Dereceleri",
+      "items": {
+        "type": "object",
+        "properties": {
+          "institution": {
+            "type": "string",
+            "title": "Kurum"
+          },
+          "program": {
+            "type": "string",
+            "title": "Bölüm"
+          },
+          "degree": {
+            "type": "string",
+            "title": "Derece",
+            "enum": [
+              "Ön Lisans",
+              "Lisans",
+              "Yandal",
+              "Yüksek Lisans",
+              "Doktora"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "contact": {
+      "$id": "#contact",
+      "type": "object",
+      "title": "İletişim",
+      "properties": {
+        "email": {
+          "$id": "#contact/email",
+          "type": "string",
+          "title": "E-posta adresi",
+          "format": "email"
+        },
+        "github": {
+          "$id": "#contact/github",
+          "type": "string",
+          "title": "GitHub kullanıcı adı"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "generation"
+  ],
+  "additionalProperties": false
+}
