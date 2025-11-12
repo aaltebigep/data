@@ -1,0 +1,57 @@
+import { walk } from "@std/fs/walk";
+import { join } from "@std/path";
+import { copy } from "@std/fs";
+
+export const DATA_DIR = join(import.meta.dirname ?? "", "../../data/");
+export const DIST_DIR = join(
+  import.meta.dirname ?? "",
+  "../../dist/public_html/",
+);
+
+export async function indexEntities(
+  relativePath: string,
+  writeIndex: boolean = true,
+  copyFiles: boolean = true,
+): Promise<{ [key: string]: any }> {
+  const index: { [key: string]: any } = {};
+  const path = join(DATA_DIR, relativePath);
+
+  if (writeIndex || copyFiles) {
+    await Deno.mkdir(join(DIST_DIR, relativePath), { recursive: true });
+  }
+
+  for await (const entry of Deno.readDir(path)) {
+    if (entry.isFile) continue;
+
+    const entity: { [key: string]: any } = { otherFiles: [] };
+    const files = walk(join(path, entry.name), {
+      includeDirs: false,
+      followSymlinks: true,
+    });
+
+    if (copyFiles) {
+      await copy(join(path, entry.name), join(DIST_DIR, relativePath, entry.name));
+    }
+
+    for await (const data of files) {
+      if (data.name.match(/.*\.json/)) {
+        entity[data.name.slice(0, -5)] = JSON.parse(
+          await Deno.readTextFile(data.path),
+        );
+      } else {
+        entity.otherFiles.push(data.name);
+      }
+    }
+
+    index[entry.name] = entity;
+  }
+
+  if (writeIndex) {
+    await Deno.writeTextFile(
+      join(DIST_DIR, relativePath, "/index.json"),
+      JSON.stringify(index),
+    );
+  }
+
+  return index;
+}

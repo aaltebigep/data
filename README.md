@@ -3,8 +3,8 @@
 ## yapılacaklar
 
 - [x] daha iyi okul verileri
-- [ ] daha fazla sosyal medya
-- [ ] index
+- [x] sosyal medyalar
+- [-] index
 - [ ] codeowners
 - [ ] veri biçimlendirici
 - [ ] documentation

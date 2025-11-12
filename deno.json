@@ -3,11 +3,13 @@
     "@std/fs": "jsr:@std/fs@^1.0.19",
     "@std/path": "jsr:@std/path@^1.1.2",
     "ajv": "npm:ajv@^8.17.1",
-    "ajv-formats": "npm:ajv-formats@^3.0.1"
+    "ajv-formats": "npm:ajv-formats@^3.0.1",
+    "http-server": "npm:http-server@^14.1.1"
   },
   "tasks": {
     "validate": "deno run -R scripts/validate/main.ts",
-    "dist": "mkdir -p dist/public_html && cp -R data/* dist/public_html"
+    "dist": "deno run -RW scripts/dist/main.ts",
+    "serve": "http-server --cors -c-1 -p 4200 dist/public_html"
   },
   "nodeModulesDir": "auto",
   "fmt": {

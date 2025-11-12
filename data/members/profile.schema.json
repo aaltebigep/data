@@ -107,13 +107,18 @@
         "email": {
           "$id": "#contact/email",
           "type": "string",
-          "title": "E-posta adresi",
+          "title": "E-posta Adresi",
           "format": "email"
         },
         "github": {
           "$id": "#contact/github",
           "type": "string",
-          "title": "GitHub kullanıcı adı"
+          "title": "GitHub Kullanıcı Adı"
+        },
+        "linkedin": {
+          "$id": "#contact/linkedin",
+          "type": "string",
+          "title": "LinkedIn Kullanıcı Adı"
         }
       },
       "additionalProperties": false

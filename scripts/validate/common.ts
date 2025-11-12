@@ -1,4 +1,4 @@
-import { join, relative } from "@std/path";
+import { join } from "@std/path";
 import { walk } from "@std/fs/walk";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
@@ -32,25 +32,24 @@ export async function schemaValidator(
   };
 }
 
-export async function validateEntity(
-  path: string,
+async function validateEntity(
+  relativePath: string,
   validatorMap: Map<string, Validator>,
   required?: Set<string>,
 ): Promise<Map<string, string>> {
   const errors: Map<string, string> = new Map();
 
   const found: Set<string> = new Set([]);
-  const files = walk(path, {
+  const files = walk(join(DATA_DIR, relativePath), {
     includeDirs: false,
     followSymlinks: true,
   });
 
   for await (const data of files) {
     found.add(data.name);
-    const file = relative(DATA_DIR, data.path);
+    const file = join(relativePath, data.name);
 
     const validate = validatorMap.get(data.name);
-
     if (!validate) {
       errors.set(file, `unknown data file "${data.name}"`);
     } else {
@@ -62,7 +61,7 @@ export async function validateEntity(
   const missing = required?.difference(found);
   if (missing?.size) {
     errors.set(
-      relative(DATA_DIR, path),
+      relativePath,
       `missing required data file "${missing.values().next().value}"`,
     );
   }
@@ -71,16 +70,16 @@ export async function validateEntity(
 }
 
 export async function validateEntities(
-  path: string,
+  relativePath: string,
   validatorMap: Map<string, Validator>,
   requiredFiles?: Set<string>,
 ): Promise<Map<string, string>> {
   let errors: Map<string, string> = new Map();
 
-  for await (const entry of Deno.readDir(path)) {
+  for await (const entry of Deno.readDir(join(DATA_DIR, relativePath))) {
     if (entry.isFile) continue;
 
-    const file = join(path, entry.name);
+    const file = join(relativePath, entry.name);
     errors = new Map([
       ...errors,
       ...await validateEntity(file, validatorMap, requiredFiles),
@@ -91,23 +90,22 @@ export async function validateEntities(
 }
 
 export async function validateCollection(
-  path: string,
+  relativePath: string,
   validator: (dataPath: string) => Promise<string | undefined>,
   ignoredFiles?: Set<string>,
 ): Promise<Map<string, string>> {
   const errors: Map<string, string> = new Map();
 
-  const files = walk(path, {
+  const files = walk(join(DATA_DIR, relativePath), {
     includeDirs: false,
     followSymlinks: true,
   });
 
   for await (const data of files) {
     if (ignoredFiles?.has(data.name)) continue;
-    const file = relative(DATA_DIR, data.path);
 
     const err = await validator(data.path);
-    if (err) errors.set(file, err);
+    if (err) errors.set(join(relativePath, data.name), err);
   }
 
   return errors;
