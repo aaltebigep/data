@@ -1,10 +1,10 @@
 import { join } from "@std/path";
 import { walk } from "@std/fs/walk";
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
+import { Ajv } from "ajv";
+import AjvFormats from "ajv-formats";
 
 const ajv = new Ajv();
-addFormats(ajv);
+AjvFormats.default(ajv);
 
 export type Validator = (dataPath: string) => Promise<string | undefined>;
 
@@ -23,8 +23,8 @@ export async function schemaValidator(
 
   return async (dataPath: string) => {
     const data = JSON.parse(await Deno.readTextFile(dataPath));
-    if (!schema(data) && schema.errors.length > 0) {
-      const e = schema.errors[0];
+    if (!schema(data) && (schema.errors?.length ?? 0) > 0) {
+      const e = (schema.errors as any[])[0];
       return `${
         e.instancePath ? `"#${e.instancePath.slice(1)}" ` : ""
       }${e.message}`;

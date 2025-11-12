@@ -1,11 +1,8 @@
 # AAL TEBİGEP Açık Veri Arşivi
 
-## yapılacaklar
+## Yapılacaklar
 
-- [x] okul verileri
-- [x] sosyal medyalar
-- [x] dizinleme
-- [ ] codeowners
-- [ ] veri biçimlendirici
-- [ ] documentation
-- [ ] daha iyi ekip/title yönetimi
+- [ ] Documentation
+- [ ] Front-end
+- [ ] Codeowners
+- [ ] Ekip yönetimi ve diğer veriler

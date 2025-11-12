@@ -9,9 +9,19 @@
   "tasks": {
     "validate": "deno run -R scripts/validate/main.ts",
     "dist": "deno run -RW scripts/dist/main.ts",
-    "serve": "http-server --cors -c-1 -p 4200 dist/public_html"
+    "serve": "deno run -ENS http-server --cors -c-1 -p 4200 dist/public_html"
   },
   "nodeModulesDir": "auto",
+  "lint": {
+    "rules": {
+      "tags": [
+        "recommended"
+      ],
+      "exclude": [
+        "no-explicit-any"
+      ]
+    }
+  },
   "fmt": {
     "indentWidth": 2,
     "proseWrap": "never"
