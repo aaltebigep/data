@@ -2,9 +2,9 @@
 
 ## yapılacaklar
 
-- [x] daha iyi okul verileri
+- [x] okul verileri
 - [x] sosyal medyalar
-- [-] index
+- [x] dizinleme
 - [ ] codeowners
 - [ ] veri biçimlendirici
 - [ ] documentation

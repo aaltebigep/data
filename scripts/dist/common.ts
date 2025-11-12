@@ -30,7 +30,10 @@ export async function indexEntities(
     });
 
     if (copyFiles) {
-      await copy(join(path, entry.name), join(DIST_DIR, relativePath, entry.name));
+      await copy(
+        join(path, entry.name),
+        join(DIST_DIR, relativePath, entry.name),
+      );
     }
 
     for await (const data of files) {
@@ -44,6 +47,44 @@ export async function indexEntities(
     }
 
     index[entry.name] = entity;
+  }
+
+  if (writeIndex) {
+    await Deno.writeTextFile(
+      join(DIST_DIR, relativePath, "/index.json"),
+      JSON.stringify(index),
+    );
+  }
+
+  return index;
+}
+
+export async function indexCollection(
+  relativePath: string,
+  ignoredFiles?: Set<string>,
+  writeIndex: boolean = true,
+  copyFiles: boolean = true,
+): Promise<{ [key: string]: any }> {
+  const index: { [key: string]: string } = {};
+  const files = walk(join(DATA_DIR, relativePath), {
+    includeDirs: false,
+    followSymlinks: true,
+  });
+
+  if (writeIndex || copyFiles) {
+    await Deno.mkdir(join(DIST_DIR, relativePath), { recursive: true });
+  }
+
+  for await (const data of files) {
+    if (ignoredFiles?.has(data.name)) continue;
+
+    index[data.name.slice(0, -5)] = JSON.parse(
+      await Deno.readTextFile(data.path),
+    );
+
+    if (copyFiles) {
+      await copy(data.path, join(DIST_DIR, relativePath, data.name));
+    }
   }
 
   if (writeIndex) {
