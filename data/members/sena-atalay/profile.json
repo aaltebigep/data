@@ -3,13 +3,16 @@
   "name": "Sena Atalay",
   "title": "Bilişim Teknolojileri",
   "generation": 139,
-  "degrees": [
-    {
-      "institution": "Boğaziçi Üniversitesi",
-      "program": "Dilbilim",
-      "degree": "Lisans"
-    }
-  ],
+  "education": {
+    "degrees": [
+      {
+        "institution": "Boğaziçi Üniversitesi",
+        "program": "Dilbilim",
+        "degree": "Lisans",
+        "graduation": 2029
+      }
+    ]
+  },
   "contact": {
     "email": "contact@sena.pink",
     "github": "jn-sena"

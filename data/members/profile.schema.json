@@ -22,37 +22,82 @@
       "$id": "#generation",
       "type": "number",
       "title": "Dönem",
-      "description": "AAL mezuniyet yılı"
+      "description": "AAL mezuniyet yılı dönemi"
     },
-    "degrees": {
-      "$id": "#degrees",
-      "type": "array",
-      "title": "Üniversite Dereceleri",
-      "items": {
-        "type": "object",
-        "properties": {
-          "institution": {
-            "type": "string",
-            "title": "Kurum"
+    "education": {
+      "$id": "#education",
+      "type": "object",
+      "title": "Eğitim",
+      "properties": {
+        "k12": {
+          "$id": "#education/k12",
+          "type": "object",
+          "title": "Üniversite Öncesi",
+          "description": "Yalnızca üniversiteye başlamamış öğrenciler için.",
+          "properties": {
+            "school": {
+              "$id": "#education/k12/school",
+              "type": "string",
+              "title": "Okul"
+            },
+            "grade": {
+              "$id": "#education/k12/grade",
+              "type": "string",
+              "title": "Sınıf düzeyi"
+            },
+            "class": {
+              "$id": "#education/k12/class",
+              "type": "string",
+              "title": "Şube"
+            }
           },
-          "program": {
-            "type": "string",
-            "title": "Bölüm"
-          },
-          "degree": {
-            "type": "string",
-            "title": "Derece",
-            "enum": [
-              "Ön Lisans",
-              "Lisans",
-              "Yandal",
-              "Yüksek Lisans",
-              "Doktora"
-            ]
-          }
+          "required": [
+            "school"
+          ],
+          "additionalProperties": false
         },
-        "additionalProperties": false
-      }
+        "degrees": {
+          "$id": "#education/degrees",
+          "type": "array",
+          "title": "Üniversite Dereceleri",
+          "items": {
+            "type": "object",
+            "properties": {
+              "institution": {
+                "type": "string",
+                "title": "Kurum"
+              },
+              "program": {
+                "type": "string",
+                "title": "Bölüm"
+              },
+              "degree": {
+                "type": "string",
+                "title": "Derece",
+                "enum": [
+                  "Ön Lisans",
+                  "Lisans",
+                  "Yandal",
+                  "Yüksek Lisans",
+                  "Doktora"
+                ]
+              },
+              "graduation": {
+                "type": "number",
+                "title": "Mezuniyet Yılı",
+                "description": "Hâlâ okunuyorsa tahmini mezuniyet yılı."
+              }
+            },
+            "required": [
+              "institution",
+              "program",
+              "degree"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
     },
     "contact": {
       "$id": "#contact",
@@ -76,8 +121,7 @@
   },
   "required": [
     "id",
-    "name",
-    "generation"
+    "name"
   ],
   "additionalProperties": false
 }

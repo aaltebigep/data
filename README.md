@@ -2,7 +2,7 @@
 
 ## yapılacaklar
 
-- [ ] daha iyi okul verileri
+- [x] daha iyi okul verileri
 - [ ] daha fazla sosyal medya
 - [ ] index
 - [ ] codeowners
