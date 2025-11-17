@@ -1,0 +1,35 @@
+/* Catppuccin Latte ve Catppuccin Mocha
+ * Copyright (c) 2021 Catppuccin */
+
+:root {
+  @media (prefers-color-scheme: light) {
+    .catppuccin-latte();
+  }
+  @media (prefers-color-scheme: dark) {
+    .catppuccin-mocha();
+  }
+}
+
+.catppuccin-latte() {
+  color-scheme: light;
+  --bg: #e6e9ef;
+  --surface: #eff1f5;
+  --overlay: #ccd0da;
+  --fg: #4c4f69;
+  --block: #5c5f77;
+  --subtle: #9ca0b0;
+  --accent: #df8e1d;
+  --accent-alt: #fe640b;
+}
+
+.catppuccin-mocha() {
+  color-scheme: dark;
+  --bg: #181825;
+  --surface: #1e1e2e;
+  --overlay: #313244;
+  --fg: #cdd6f4;
+  --block: #bac2de;
+  --subtle: #6c7086;
+  --accent: #f9e2af;
+  --accent-alt: #fab387;
+}

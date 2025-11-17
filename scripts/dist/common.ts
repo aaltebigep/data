@@ -5,7 +5,7 @@ import { copy } from "@std/fs";
 export const DATA_DIR = join(import.meta.dirname ?? "", "../../data/");
 export const DIST_DIR = join(
   import.meta.dirname ?? "",
-  "../../dist/public_html/",
+  "../../dist/",
 );
 
 export async function provideSchemas() {

@@ -20,7 +20,7 @@ jobs:
       - run: deno task dist
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/public_html
+          path: dist
 
   deploy:
     needs: build
