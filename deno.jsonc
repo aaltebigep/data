@@ -7,7 +7,8 @@
     "ajv-formats": "npm:ajv-formats@^3.0.1",
     "less": "npm:less@^4.4.2",
     "preact": "npm:preact@^10.27.2",
-    "vite": "npm:vite@^7.2.2"
+    "vite": "npm:vite@^7.2.2",
+    "@app/": "./app/"
   },
   "tasks": {
     "app:dev": "deno run -RWENS --allow-run --allow-ffi npm:vite",
@@ -15,7 +16,7 @@
     "data:dist": "deno run -RW scripts/dist/main.ts",
     "data:validate": "deno run -R scripts/validate/main.ts",
     "dist": "deno task app:build && deno task data:dist",
-    "serve": "deno run -RENS http-server --cors -c-1 -p 4200 dist"
+    "serve": "deno run -RENS npm:http-server --cors -c-1 -p 4200 dist"
   },
   "nodeModulesDir": "auto",
   "compilerOptions": {

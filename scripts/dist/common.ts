@@ -2,11 +2,8 @@ import { walk } from "@std/fs/walk";
 import { join, relative } from "@std/path";
 import { copy } from "@std/fs";
 
-export const DATA_DIR = join(import.meta.dirname ?? "", "../../data/");
-export const DIST_DIR = join(
-  import.meta.dirname ?? "",
-  "../../dist/",
-);
+export const DATA_DIR = join(import.meta.dirname!, "../../data/");
+export const DIST_DIR = join(import.meta.dirname!, "../../dist/");
 
 export async function provideSchemas() {
   const files = walk(DATA_DIR, {
