@@ -1,3 +1,8 @@
 import { ComponentType, createContext } from "preact";
 
-export const Page = createContext<ComponentType>(() => null);
+interface PageType {
+  page: ComponentType;
+  setPage: (value: ComponentType) => void;
+}
+
+export const Page = createContext<PageType>({} as PageType);

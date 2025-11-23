@@ -2,8 +2,18 @@ import { Component, VNode } from "preact";
 
 import "./json.less";
 
-function indent(num: number, condition: boolean = true) {
-  return condition ? " ".repeat(num) : "";
+interface Props {
+  object: { [key: string]: any };
+}
+
+export default class Json extends Component<Props> {
+  render() {
+    return (
+      <pre class="json box">
+        {show(this.props.object)}
+      </pre>
+    );
+  }
 }
 
 function show(
@@ -64,7 +74,7 @@ function show(
         const properties = Object.keys(value).map((key) => ({
           key: show(key, offset + 2, true, "key"),
           val: show(value[key], offset + 2),
-        })).filter((obj) => obj.key && obj.val);
+        })).filter(({ key, val }) => key && val);
         if (!properties.length) return null;
 
         return (
@@ -72,9 +82,9 @@ function show(
             {indent(offset, head)}
             {"{"}
             <br />
-            {properties.map((obj, idx, arr) => (
+            {properties.map(({ key, val }, idx, arr) => (
               <>
-                {obj.key}: {obj.val}
+                {key}: {val}
                 {idx === (arr.length - 1) ? "" : ","}
                 <br />
               </>
@@ -89,16 +99,6 @@ function show(
   }
 }
 
-interface JsonProps {
-  object: { [key: string]: any };
-}
-
-export default class Json extends Component<JsonProps> {
-  render() {
-    return (
-      <pre class="json box">
-        {show(this.props.object)}
-      </pre>
-    );
-  }
+function indent(num: number, condition: boolean = true) {
+  return condition ? " ".repeat(num) : "";
 }
