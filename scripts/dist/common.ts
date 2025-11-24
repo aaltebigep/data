@@ -1,5 +1,5 @@
 import { walk } from "@std/fs/walk";
-import { join, relative } from "@std/path";
+import { dirname, join, relative } from "@std/path";
 import { copy } from "@std/fs";
 
 export const DATA_DIR = join(import.meta.dirname ?? "", "../../data/");
@@ -8,18 +8,28 @@ export const DIST_DIR = join(
   "../../dist/public_html/",
 );
 
-export async function provideSchemas() {
+export async function provideSchemas(writeIndex: boolean = true) {
   const files = walk(DATA_DIR, {
     includeDirs: false,
     followSymlinks: true,
   });
 
+  const schemas: {[key: string]: string} = {};
+
   for await (const entry of files) {
     if (entry.name.match(/^.*\.?schema\.json$/)) {
       const path = relative(DATA_DIR, entry.path);
+      await Deno.mkdir(join(DIST_DIR, dirname(path)), { recursive: true })
       await copy(entry.path, join(DIST_DIR, path));
+      schemas[path] = JSON.parse(await Deno.readTextFile(join(DIST_DIR, path)));
     }
   }
+
+  if (writeIndex)
+    await Deno.writeTextFile(
+      join(DIST_DIR, "/schemas.json"),
+      JSON.stringify(schemas),
+    );
 }
 
 export async function indexEntities(
