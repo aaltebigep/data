@@ -17,11 +17,11 @@ class App extends Component<Record<PropertyKey, never>, State> {
   }
 
   setPage = (value: ComponentType) => {
-    this.setState({ page: value });
+    this.setState({ ...this.state, page: value });
   };
 
   render() {
-    const { page: P } = this.state;
+    const P = this.state.page;
 
     return (
       <main>

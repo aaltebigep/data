@@ -24,12 +24,12 @@ function show(
 ): VNode<any> | null {
   switch (typeof value) {
     case "string":
-      if (!value) return null;
+      if (!value.trim()) return null;
       return (
         <>
           {indent(offset, head)}
           <span class={classes ?? "string"}>
-            {JSON.stringify(value)}
+            {JSON.stringify(value.trim())}
           </span>
         </>
       );

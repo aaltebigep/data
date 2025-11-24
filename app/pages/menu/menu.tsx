@@ -2,6 +2,7 @@ import { Component } from "preact";
 
 import { Page } from "@app/lib/context.ts";
 import Editor from "@app/pages/editor/editor.tsx";
+import Button, { ButtonIcon } from "@app/components/button/button.tsx";
 
 import "./menu.less";
 
@@ -17,9 +18,10 @@ export default class Menu extends Component {
 
         <Page.Consumer>
           {({ setPage }) => (
-            <section>
-              <button onClick={() => setPage(Editor)}>edit</button>
-            </section>
+            <nav>
+              <Button icon={ButtonIcon.Create} onClick={() => setPage(Editor)}>
+              </Button>
+            </nav>
           )}
         </Page.Consumer>
       </div>
