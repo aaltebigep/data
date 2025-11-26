@@ -1,12 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://aaltebigep.github.io/data/members/profile.schema.json#",
-  "title": "Profil",
+  "title": "Üye Profili",
   "type": "object",
   "properties": {
     "id": {
       "$id": "#id",
-      "type": "string"
+      "type": "string",
+      "title": "ID"
     },
     "name": {
       "$id": "#name",
@@ -43,7 +44,7 @@
             "grade": {
               "$id": "#education/k12/grade",
               "type": "string",
-              "title": "Sınıf düzeyi"
+              "title": "Sınıf Düzeyi"
             },
             "class": {
               "$id": "#education/k12/class",
@@ -64,14 +65,17 @@
             "type": "object",
             "properties": {
               "institution": {
+                "$comment": "institution",
                 "type": "string",
                 "title": "Kurum"
               },
               "program": {
+                "$comment": "program",
                 "type": "string",
                 "title": "Bölüm"
               },
               "degree": {
+                "$comment": "degree",
                 "type": "string",
                 "title": "Derece",
                 "enum": [
@@ -83,6 +87,7 @@
                 ]
               },
               "graduation": {
+                "$comment": "graduation",
                 "type": "number",
                 "title": "Mezuniyet Yılı",
                 "description": "Hâlâ okunuyorsa tahmini mezuniyet yılı."
