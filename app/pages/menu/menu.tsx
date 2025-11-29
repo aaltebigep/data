@@ -13,14 +13,16 @@ export default class Menu extends Component {
         <header>
           <h3>AAL TEBİGEP</h3>
           <h1>Veri Düzenleyici</h1>
-          <h5>(Demo)</h5>
         </header>
 
         <Page.Consumer>
           {({ setPage }) => (
             <nav>
-              <Button icon={ButtonIcon.Create} onClick={() => setPage(Editor)}>
-              </Button>
+              <Button
+                icon={ButtonIcon.Add}
+                onClick={() => setPage(Editor)}
+                title="Veri Oluştur"
+              />
             </nav>
           )}
         </Page.Consumer>

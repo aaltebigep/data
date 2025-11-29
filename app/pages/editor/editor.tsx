@@ -1,15 +1,17 @@
 import { Component } from "preact";
 
 import { Page } from "@app/lib/context.ts";
-import Json from "@app/components/json/json.tsx";
 import Menu from "@app/pages/menu/menu.tsx";
 import Button, { ButtonIcon } from "@app/components/button/button.tsx";
-import Select from "@app/components/select/select.tsx";
+import Input, { InputType } from "@app/components/input/input.tsx";
+import Field from "@app/components/field/field.tsx";
+import Json from "@app/components/json/json.tsx";
 
 import "./editor.less";
 
 interface State {
-  schemas: { [key: string]: any };
+  schemas?: { [key: string]: { [key: string]: any } };
+  schema?: { [key: string]: any };
   object: { [key: string]: any };
 }
 
@@ -18,7 +20,6 @@ export default class Editor
   constructor() {
     super();
     this.state = {
-      schemas: {},
       object: {},
     };
   }
@@ -32,17 +33,16 @@ export default class Editor
         throw new Error(`${response.status}`);
       }
       const result = await response.json();
-      this.setState({ ...this.state, schemas: result });
+      this.setState({
+        ...this.state,
+        schemas: result,
+        schema: result[Object.keys(result)[0]],
+        object: {},
+      });
     } catch (e: any) {
       console.error(e.message);
     }
   }
-
-  updateObject = (key: string, value: any) => {
-    const obj = this.state.object;
-    obj[key] = value;
-    this.setState({ ...this.state, object: obj });
-  };
 
   render() {
     return (
@@ -52,22 +52,46 @@ export default class Editor
             {({ setPage }) => (
               <nav class="box">
                 <Button
-                  icon={ButtonIcon.Create}
+                  icon={ButtonIcon.Back}
                   onClick={() => setPage(Menu)}
+                  title="Geri"
                 />
-                <Select>
-                  {Object.keys(this.state.schemas).map((key) => (
-                    <option value={key} key={key}>
-                      {this.state.schemas[key].title}
+                <Input
+                  type={InputType.Select}
+                  title="Veri Türü"
+                  onChange={(event: any) =>
+                    this.setState({
+                      ...this.state,
+                      schema: this.state.schemas?.[event.target.value],
+                      object: {},
+                    })}
+                >
+                  {Object.keys(this.state.schemas ?? {}).map((key) => (
+                    <option value={key}>
+                      {this.state.schemas?.[key].title}
                     </option>
                   ))}
-                </Select>
+                </Input>
               </nav>
             )}
           </Page.Consumer>
-          <div class="box">
+          <section class="box">
             <h1>Düzenleyici</h1>
-          </div>
+
+            {this.state.schemas
+              ? (
+                <Field
+                  schema={this.state.schema ?? {}}
+                  value={this.state.object}
+                  onChange={(v) => this.setState({ ...this.state, object: v })}
+                />
+              )
+              : (
+                <div class="loader-container">
+                  <div class="loader" />
+                </div>
+              )}
+          </section>
         </div>
 
         <div class="side">

@@ -13,7 +13,7 @@
 input,
 textarea {
   &::placeholder {
-    color: var(--subtle) !important;
+    color: var(--fg1) !important;
   }
 }
 
@@ -60,7 +60,7 @@ noscript {
   box-sizing: border-box;
   padding: 1rem;
   margin: 0.5rem;
-  background-color: var(--surface);
+  background-color: var(--bg1);
   border-radius: 1.5rem;
 }
 
@@ -83,6 +83,32 @@ noscript {
 nav {
   display: flex;
   flex-direction: row;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.loader {
+  border: 1rem solid var(--bg);
+  border-top: 1rem solid var(--accent);
+  border-bottom: 1rem solid var(--accent);
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+  animation: spin 2s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Temalar */

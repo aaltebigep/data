@@ -10,26 +10,24 @@
   }
 }
 
-/// SVG kodunu data URL'si olarak kullanmak üzere düzenle.
-/// Kaynak: https://github.com/lvl99/less-inline-svg-code
-/// WTFPL Lisansı şartlarınca.
-.svg-inline(@code) {
-  @-svg-code: escape(~'<?xml version="1.0" ?>@{code}');
-  @-inline-svg-code: ~"data:image/svg+xml,@{-svg-code}";
-  @-inline-svg-url: ~"url('@{-inline-svg-code}')";
-}
-
 .catppuccin-latte() {
   color-scheme: light;
   --bg: #e6e9ef;
-  --surface: #eff1f5;
-  --overlay: #ccd0da;
+  --bg1: #eff1f5;
+  --bg2: #e6e9ef;
+
   --fg: #4c4f69;
-  --block: #5c5f77;
-  --subtle: #9ca0b0;
+  --fg1: #5c5f77;
+  --fg2: #9ca0b0;
+
+  --success: #40a02b;
+  --warn: #fe640b;
+  --error: #d20f39;
+
+  --selection: #df8e1d4d;
+
   --accent: #df8e1d;
   --accent-alt: #fe640b;
-  --selection: #df8e1d4d;
 
   --json-string: #40a02b;
   --json-number: #fe640b;
@@ -38,25 +36,43 @@
   --json-key: #1e66f5;
   --json-punctuation: #7c7f93;
 
-  @ic: #e6e9ef;
+  @icon: #e6e9ef;
 
   @icon-back: escape(
-    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.522.969a.25.25 0 0 1 .177.427l-.35.349h1.89a.25.25 0 1 1 0 .5h-1.9l.36.36a.25.25 0 1 1-.354.354L.638 2.25c-.181-.193-.158-.313 0-.5l.707-.708A.25.25 0 0 1 1.522.97" fill="@{ic}"/></svg>'
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.522.969a.25.25 0 0 1 .177.427l-.35.349h1.89a.25.25 0 1 1 0 .5h-1.9l.36.36a.25.25 0 1 1-.354.354L.638 2.25c-.181-.193-.158-.313 0-.5l.707-.708A.25.25 0 0 1 1.522.97" fill="@{icon}"/></svg>'
   );
   --icon-back: url("data:image/svg+xml,@{icon-back}");
+
+  @icon-add: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><g fill="@{icon}"><rect width="3" height=".5" x=".5" y="1.75" ry=".25"/><rect width=".5" height="3" x="1.75" y=".5" ry=".25"/></g></svg>'
+  );
+  --icon-back: url("data:image/svg+xml,@{icon-add}");
+
+  @icon-remove: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><rect width="3" height=".5" x=".5" y="1.75" ry=".25" fill="@{icon}"/></svg>'
+  );
+  --icon-remove: url("data:image/svg+xml,@{icon-remove}");
 }
 
 .catppuccin-mocha() {
   color-scheme: dark;
+
   --bg: #181825;
-  --surface: #1e1e2e;
-  --overlay: #313244;
+  --bg1: #1e1e2e;
+  --bg2: #181825;
+
   --fg: #cdd6f4;
-  --block: #bac2de;
-  --subtle: #6c7086;
+  --fg1: #bac2de;
+  --fg2: #6c7086;
+
+  --success: #a6e3a1;
+  --warn: #fab387;
+  --error: #f38ba8;
+
+  --selection: #f9e2af4d;
+
   --accent: #f9e2af;
   --accent-alt: #fab387;
-  --selection: #f9e2af4d;
 
   --json-string: #a6e3a1;
   --json-number: #fab387;
@@ -65,9 +81,20 @@
   --json-key: #89b4fa;
   --json-punctuation: #9399b2;
 
-  @ic: #181825;
+  @icon: #181825;
+
   @icon-back: escape(
-    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.522.969a.25.25 0 0 1 .177.427l-.35.349h1.89a.25.25 0 1 1 0 .5h-1.9l.36.36a.25.25 0 1 1-.354.354L.638 2.25c-.181-.193-.158-.313 0-.5l.707-.708A.25.25 0 0 1 1.522.97" fill="@{ic}"/></svg>'
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.522.969a.25.25 0 0 1 .177.427l-.35.349h1.89a.25.25 0 1 1 0 .5h-1.9l.36.36a.25.25 0 1 1-.354.354L.638 2.25c-.181-.193-.158-.313 0-.5l.707-.708A.25.25 0 0 1 1.522.97" fill="@{icon}"/></svg>'
   );
   --icon-back: url("data:image/svg+xml,@{icon-back}");
+
+  @icon-add: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><g fill="@{icon}"><rect width="3" height=".5" x=".5" y="1.75" ry=".25"/><rect width=".5" height="3" x="1.75" y=".5" ry=".25"/></g></svg>'
+  );
+  --icon-add: url("data:image/svg+xml,@{icon-add}");
+
+  @icon-remove: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><rect width="3" height=".5" x=".5" y="1.75" ry=".25" fill="@{icon}"/></svg>'
+  );
+  --icon-remove: url("data:image/svg+xml,@{icon-remove}");
 }

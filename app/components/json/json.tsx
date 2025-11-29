@@ -10,7 +10,7 @@ export default class Json extends Component<Props> {
   render() {
     return (
       <pre class="json box">
-        {show(this.props.object)}
+        {show(this.props.object) ?? "{}"}
       </pre>
     );
   }

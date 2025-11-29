@@ -3,6 +3,10 @@
 ## Yapılacaklar
 
 - [ ] Documentation
-- [ ] Front-end
+- [ ] Veri Düzenleyici
+  - [ ] Yeni stil
+  - [ ] Açıklamalar
+  - [ ] Portre yönelimi
+  - [ ] Kopyala tuşu
 - [ ] Codeowners
 - [ ] Ekip yönetimi ve diğer veriler

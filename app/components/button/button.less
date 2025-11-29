@@ -14,6 +14,24 @@ button {
     width: 100%;
     height: 100%;
     content: "";
-    background: no-repeat center/100% var(--icon-back);
+  }
+
+  &[data-icon="back"] {
+    background: none var(--fg);
+    &::after {
+      background: no-repeat center/100% var(--icon-back);
+    }
+  }
+  &[data-icon="add"] {
+    background: none var(--success);
+    &::after {
+      background: no-repeat center/100% var(--icon-add);
+    }
+  }
+  &[data-icon="remove"] {
+    background: none var(--error);
+    &::after {
+      background: no-repeat center/100% var(--icon-remove);
+    }
   }
 }
