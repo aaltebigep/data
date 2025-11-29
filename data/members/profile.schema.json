@@ -7,23 +7,28 @@
     "id": {
       "$id": "#id",
       "type": "string",
-      "title": "ID"
+      "title": "ID",
+      "examples": ["ali-veli-yilmaz"]
     },
     "name": {
       "$id": "#name",
       "type": "string",
-      "title": "İsim"
+      "title": "İsim",
+      "examples": ["Ali Veli Yılmaz"]
     },
     "title": {
       "$id": "#title",
       "type": "string",
-      "title": "Ünvan"
+      "title": "Ünvan",
+      "description": "TEBİGEP'teki ünvanlarınız ve üye olduğunuz ekipler.",
+      "examples": ["Bilişim Teknolojileri, Medya ve Tasarım"]
     },
     "generation": {
       "$id": "#generation",
       "type": "number",
       "title": "Dönem",
-      "description": "AAL mezuniyet yılı dönemi"
+      "description": "AAL mezuniyet yılı döneminiz.",
+      "examples": [135]
     },
     "education": {
       "$id": "#education",
@@ -34,22 +39,39 @@
           "$id": "#education/k12",
           "type": "object",
           "title": "Üniversite Öncesi",
-          "description": "Yalnızca üniversiteye başlamamış öğrenciler için.",
+          "description": "Yalnızca lise ve altında öğrenim görmekte olan öğrenciler için. Mezun veya üniversite öğrencisi iseniz boş bırakınız.",
           "properties": {
             "school": {
               "$id": "#education/k12/school",
               "type": "string",
-              "title": "Okul"
+              "title": "Okul",
+              "examples": ["Ankara Atatürk Lisesi"]
             },
             "grade": {
               "$id": "#education/k12/grade",
               "type": "string",
-              "title": "Sınıf Düzeyi"
+              "title": "Sınıf Düzeyi",
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "Hazırlık",
+                "9",
+                "10",
+                "11",
+                "12"
+              ]
             },
             "class": {
               "$id": "#education/k12/class",
               "type": "string",
-              "title": "Şube"
+              "title": "Şube",
+              "examples": ["C"]
             }
           },
           "required": [
@@ -67,12 +89,14 @@
               "institution": {
                 "$comment": "institution",
                 "type": "string",
-                "title": "Kurum"
+                "title": "Kurum",
+                "examples": ["Orta Doğu Teknik Üniversitesi"]
               },
               "program": {
                 "$comment": "program",
                 "type": "string",
-                "title": "Bölüm"
+                "title": "Bölüm",
+                "examples": ["Bilgisayar Mühendisliği"]
               },
               "degree": {
                 "$comment": "degree",
@@ -90,7 +114,8 @@
                 "$comment": "graduation",
                 "type": "number",
                 "title": "Mezuniyet Yılı",
-                "description": "Hâlâ okunuyorsa tahmini mezuniyet yılı."
+                "description": "Hâlâ okuyorsanız tahmini mezuniyet yılı.",
+                "examples": [2048]
               }
             },
             "required": [
@@ -113,17 +138,20 @@
           "$id": "#contact/email",
           "type": "string",
           "title": "E-posta Adresi",
-          "format": "email"
+          "format": "email",
+          "examples": ["ali-veli-yilmaz@mail.com"]
         },
         "github": {
           "$id": "#contact/github",
           "type": "string",
-          "title": "GitHub Kullanıcı Adı"
+          "title": "GitHub Kullanıcı Adı",
+          "examples": ["avyilmaz"]
         },
         "linkedin": {
           "$id": "#contact/linkedin",
           "type": "string",
-          "title": "LinkedIn Kullanıcı Adı"
+          "title": "LinkedIn Kullanıcı Adı",
+          "examples": ["ali-veli-yilmaz"]
         }
       },
       "additionalProperties": false
