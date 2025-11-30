@@ -11,22 +11,23 @@ export async function provideSchemas(writeIndex: boolean = true) {
     followSymlinks: true,
   });
 
-  const schemas: {[key: string]: string} = {};
+  const schemas: { [key: string]: string } = {};
 
   for await (const entry of files) {
     if (entry.name.match(/^.*\.?schema\.json$/)) {
       const path = relative(DATA_DIR, entry.path);
-      await Deno.mkdir(join(DIST_DIR, dirname(path)), { recursive: true })
+      await Deno.mkdir(join(DIST_DIR, dirname(path)), { recursive: true });
       await copy(entry.path, join(DIST_DIR, path));
       schemas[path] = JSON.parse(await Deno.readTextFile(join(DIST_DIR, path)));
     }
   }
 
-  if (writeIndex)
+  if (writeIndex) {
     await Deno.writeTextFile(
       join(DIST_DIR, "/schemas.json"),
       JSON.stringify(schemas),
     );
+  }
 }
 
 export async function indexEntities(

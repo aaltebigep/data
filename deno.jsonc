@@ -46,7 +46,7 @@
     "proseWrap": "never"
   },
   "exclude": [
-    "app/.vite",
+    "**/.vite",
     "dist"
   ]
 }

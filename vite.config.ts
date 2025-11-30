@@ -4,6 +4,7 @@ import { resolve } from "@std/path";
 
 export default defineConfig({
   plugins: [preact()],
+  base: "/data/",
   root: "app",
   build: {
     outDir: "../dist",
