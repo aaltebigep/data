@@ -1,0 +1,88 @@
+:root {
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+::selection {
+  background-color: var(--selection);
+}
+
+input,
+textarea {
+  &::placeholder {
+    color: var(--fg2) !important;
+  }
+}
+
+[role="tooltip"] {
+  display: none;
+}
+
+[aria-describedby] {
+  &:hover + [role="tooltip"],
+  &:focus + [role="tooltip"] {
+    display: block;
+    position: absolute;
+    background-color: var(--bg3);
+    color: var(--fg1);
+    padding: 1rem;
+    border-radius: 1rem;
+    z-index: 200;
+  }
+
+  label& {
+    &::before {
+      display: inline-block;
+      content: "";
+      background: no-repeat center/100% var(--icon-info);
+      width: 0.9rem;
+      height: 0.9rem;
+      margin-right: 0.25rem;
+    }
+  }
+}
+
+input, select, button, label, .box {
+  outline: 0 solid transparent;
+  transition: outline 0.075s ease-out;
+
+  &:focus {
+    outline: 0.175rem solid var(--accent);
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  > div {
+    border: 1rem solid var(--bg);
+    border-top: 1rem solid var(--accent);
+    border-bottom: 1rem solid var(--accent);
+    border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
+    animation: spin 2s ease infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Düzen */
+@import "_layout";
+
+/* Temalar */
+@import "_themes";

@@ -8,7 +8,7 @@ AjvFormats.default(ajv);
 
 export type Validator = (dataPath: string) => Promise<string | undefined>;
 
-export const DATA_DIR = join(import.meta.dirname ?? "", "../../data/");
+export const DATA_DIR = join(import.meta.dirname!, "../../data/");
 
 export function emptyValidator(): Promise<string | undefined> {
   return new Promise((resolve, _) => resolve(undefined));
