@@ -12,16 +12,20 @@
 
 .catppuccin-latte() {
   color-scheme: light;
-  --bg: #e6e9ef;
+
   --bg1: #eff1f5;
   --bg2: #e6e9ef;
+  --bg3: #ccd0da;
 
   --fg: #4c4f69;
   --fg1: #5c5f77;
   --fg2: #9ca0b0;
 
+  --elevation: #dce0e84d;
+
   --success: #40a02b;
   --warn: #fe640b;
+  --info: #df8e1d;
   --error: #d20f39;
 
   --selection: #df8e1d4d;
@@ -29,59 +33,15 @@
   --accent: #df8e1d;
   --accent-alt: #fe640b;
 
-  --json-string: #40a02b;
-  --json-number: #fe640b;
-  --json-boolean: #fe640b;
-  --json-null: #8839ef;
-  --json-key: #1e66f5;
-  --json-punctuation: #7c7f93;
+  --string: #40a02b;
+  --number: #fe640b;
+  --boolean: #fe640b;
+  --null: #8839ef;
+  --key: #1e66f5;
+  --punctuation: #7c7f93;
 
   @icon: #e6e9ef;
-
-  @icon-back: escape(
-    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.522.969a.25.25 0 0 1 .177.427l-.35.349h1.89a.25.25 0 1 1 0 .5h-1.9l.36.36a.25.25 0 1 1-.354.354L.638 2.25c-.181-.193-.158-.313 0-.5l.707-.708A.25.25 0 0 1 1.522.97" fill="@{icon}"/></svg>'
-  );
-  --icon-back: url("data:image/svg+xml,@{icon-back}");
-
-  @icon-add: escape(
-    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><g fill="@{icon}"><rect width="3" height=".5" x=".5" y="1.75" ry=".25"/><rect width=".5" height="3" x="1.75" y=".5" ry=".25"/></g></svg>'
-  );
-  --icon-back: url("data:image/svg+xml,@{icon-add}");
-
-  @icon-remove: escape(
-    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><rect width="3" height=".5" x=".5" y="1.75" ry=".25" fill="@{icon}"/></svg>'
-  );
-  --icon-remove: url("data:image/svg+xml,@{icon-remove}");
-}
-
-.catppuccin-mocha() {
-  color-scheme: dark;
-
-  --bg: #181825;
-  --bg1: #1e1e2e;
-  --bg2: #181825;
-
-  --fg: #cdd6f4;
-  --fg1: #bac2de;
-  --fg2: #6c7086;
-
-  --success: #a6e3a1;
-  --warn: #fab387;
-  --error: #f38ba8;
-
-  --selection: #f9e2af4d;
-
-  --accent: #f9e2af;
-  --accent-alt: #fab387;
-
-  --json-string: #a6e3a1;
-  --json-number: #fab387;
-  --json-boolean: #fab387;
-  --json-null: #cba6f7;
-  --json-key: #89b4fa;
-  --json-punctuation: #9399b2;
-
-  @icon: #181825;
+  @info: #df8e1d;
 
   @icon-back: escape(
     '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.522.969a.25.25 0 0 1 .177.427l-.35.349h1.89a.25.25 0 1 1 0 .5h-1.9l.36.36a.25.25 0 1 1-.354.354L.638 2.25c-.181-.193-.158-.313 0-.5l.707-.708A.25.25 0 0 1 1.522.97" fill="@{icon}"/></svg>'
@@ -97,4 +57,64 @@
     '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><rect width="3" height=".5" x=".5" y="1.75" ry=".25" fill="@{icon}"/></svg>'
   );
   --icon-remove: url("data:image/svg+xml,@{icon-remove}");
+
+  @icon-info: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1.5" fill="none" stroke="@{info}" stroke-width=".375"/><path  d="M2.014 1.005q.209 0 .348.064.14.063.21.169.07.104.07.225 0 .133-.051.218-.05.083-.126.14-.075.057-.152.106-.075.05-.127.11-.05.062-.05.158v.056H1.74v-.07q0-.14.045-.23.047-.09.114-.147.068-.058.135-.1.067-.044.112-.089.047-.046.047-.115 0-.075-.062-.115-.061-.04-.157-.04-.093 0-.182.042-.087.04-.161.125L1.357 1.3q.118-.138.28-.216t.377-.078M1.943 2.5q.102 0 .175.074.072.072.072.173 0 .102-.072.175-.073.073-.175.073-.104 0-.175-.073-.072-.073-.072-.175 0-.1.072-.173.07-.074.175-.074" aria-label="?" fill="@{info}"/></svg>'
+  );
+  --icon-info: url("data:image/svg+xml,@{icon-info}");
+}
+
+.catppuccin-mocha() {
+  color-scheme: dark;
+
+  --bg: #181825;
+  --bg1: #1e1e2e;
+  --bg2: #181825;
+  --bg3: #313244;
+
+  --fg: #cdd6f4;
+  --fg1: #bac2de;
+  --fg2: #6c7086;
+
+  --elevation: #11111b4d;
+
+  --success: #a6e3a1;
+  --warn: #fab387;
+  --info: #f9e2af;
+  --error: #f38ba8;
+
+  --selection: #f9e2af4d;
+
+  --accent: #f9e2af;
+  --accent-alt: #fab387;
+
+  --string: #a6e3a1;
+  --number: #fab387;
+  --boolean: #fab387;
+  --null: #cba6f7;
+  --key: #89b4fa;
+  --punctuation: #9399b2;
+
+  @icon: #181825;
+  @info: #f9e2af;
+
+  @icon-back: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.522.969a.25.25 0 0 1 .177.427l-.35.349h1.89a.25.25 0 1 1 0 .5h-1.9l.36.36a.25.25 0 1 1-.354.354L.638 2.25c-.181-.193-.158-.313 0-.5l.707-.708A.25.25 0 0 1 1.522.97" fill="@{icon}"/></svg>'
+  );
+  --icon-back: url("data:image/svg+xml,@{icon-back}");
+
+  @icon-add: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><g fill="@{icon}"><rect width="3" height=".5" x=".5" y="1.75" ry=".25"/><rect width=".5" height="3" x="1.75" y=".5" ry=".25"/></g></svg>'
+  );
+  --icon-add: url("data:image/svg+xml,@{icon-add}");
+
+  @icon-remove: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><rect width="3" height=".5" x=".5" y="1.75" ry=".25" fill="@{icon}"/></svg>'
+  );
+  --icon-remove: url("data:image/svg+xml,@{icon-remove}");
+
+  @icon-info: escape(
+    '<svg width="16" height="16" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1.5" fill="none" stroke="@{info}" stroke-width=".375"/><path  d="M2.014 1.005q.209 0 .348.064.14.063.21.169.07.104.07.225 0 .133-.051.218-.05.083-.126.14-.075.057-.152.106-.075.05-.127.11-.05.062-.05.158v.056H1.74v-.07q0-.14.045-.23.047-.09.114-.147.068-.058.135-.1.067-.044.112-.089.047-.046.047-.115 0-.075-.062-.115-.061-.04-.157-.04-.093 0-.182.042-.087.04-.161.125L1.357 1.3q.118-.138.28-.216t.377-.078M1.943 2.5q.102 0 .175.074.072.072.072.173 0 .102-.072.175-.073.073-.175.073-.104 0-.175-.073-.072-.073-.072-.175 0-.1.072-.173.07-.074.175-.074" aria-label="?" fill="@{info}"/></svg>'
+  );
+  --icon-info: url("data:image/svg+xml,@{icon-info}");
 }

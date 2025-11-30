@@ -58,7 +58,7 @@ export default class Editor
                 />
                 <Input
                   type={InputType.Select}
-                  title="Veri Türü"
+                  label="Veri Türü"
                   onChange={(event: any) =>
                     this.setState({
                       ...this.state,
@@ -87,8 +87,8 @@ export default class Editor
                 />
               )
               : (
-                <div class="loader-container">
-                  <div class="loader" />
+                <div class="loader">
+                  <div />
                 </div>
               )}
           </section>

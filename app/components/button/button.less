@@ -8,6 +8,11 @@ button {
   cursor: pointer;
   flex-shrink: 0;
   outline: 0 solid transparent;
+  transition: outline 0.075s ease-out;
+
+  &:focus {
+    outline: 0.175rem solid var(--accent);
+  }
 
   &::after {
     display: block;
@@ -22,12 +27,14 @@ button {
       background: no-repeat center/100% var(--icon-back);
     }
   }
+
   &[data-icon="add"] {
     background: none var(--success);
     &::after {
       background: no-repeat center/100% var(--icon-add);
     }
   }
+
   &[data-icon="remove"] {
     background: none var(--error);
     &::after {

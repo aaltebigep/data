@@ -4,9 +4,10 @@
 
 - [ ] Documentation
 - [ ] Veri Düzenleyici
-  - [ ] Yeni stil
-  - [ ] Açıklamalar
+  - [x] Yeni stil
+  - [x] Açıklamalar
   - [ ] Portre yönelimi
   - [ ] Kopyala tuşu
+  - [x] Zorunluluklar
 - [ ] Codeowners
 - [ ] Ekip yönetimi ve diğer veriler
