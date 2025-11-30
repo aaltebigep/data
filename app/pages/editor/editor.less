@@ -21,3 +21,20 @@
     }
   }
 }
+
+@media (max-width: 639px), (orientation: portrait) {
+  #editor {
+    flex-direction: column;
+
+    input {
+      width: 85%;
+    }
+
+    pre.json {
+      button {
+        bottom: 0.25rem;
+        right: 0.25rem;
+      }
+    }
+  }
+}

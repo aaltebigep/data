@@ -3,11 +3,11 @@
 ## Yapılacaklar
 
 - [ ] Documentation
-- [ ] Veri Düzenleyici
+- [x] Veri Düzenleyici
   - [x] Yeni stil
   - [x] Açıklamalar
-  - [ ] Portre yönelimi
-  - [ ] Kopyala tuşu
+  - [x] Portre yönelimi
+  - [x] Kopyala tuşu
   - [x] Zorunluluklar
 - [ ] Codeowners
 - [ ] Ekip yönetimi ve diğer veriler

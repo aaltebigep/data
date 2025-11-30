@@ -1,16 +1,30 @@
-import { Component, VNode } from "preact";
+import { Component, createRef, RefObject, VNode } from "preact";
 
 import "./json.less";
+import Button, { ButtonIcon } from "../button/button.tsx";
 
 interface Props {
   object: { [key: string]: any };
 }
 
 export default class Json extends Component<Props> {
+  span: RefObject<HTMLSpanElement>;
+
+  constructor() {
+    super();
+    this.span = createRef();
+  }
+
   render() {
     return (
       <pre class="json box">
-        {show(this.props.object) ?? "{}"}
+        <span ref={this.span}>
+          {show(this.props.object) ?? "{}"}
+        </span>
+        <Button
+          title="Kopyala"
+          icon={ButtonIcon.Copy}
+          onClick={() => navigator.clipboard.writeText(this.span.current?.innerText ?? '')} />
       </pre>
     );
   }

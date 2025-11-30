@@ -6,6 +6,7 @@ export enum ButtonIcon {
   Back = "back",
   Add = "add",
   Remove = "remove",
+  Copy = "copy",
 }
 
 interface Props {
