@@ -1,0 +1,32 @@
+Licenses
+
+Copyright (c) 2025 AAL TEBİGEP <tebigepaal@gmail.com>
+Copyright (c) 2025 Sena <contact@sena.pink>
+
+------------------------------------------------------------------------
+
+This project contains multiple components, each licensed under different
+terms indicated below:
+
+- `data/`
+  Copyright: (c) 2025 AAL TEBİGEP
+  License: All rights reserved.
+
+- `app/`
+  Copyright: (c) 2025 AAL TEBİGEP, Sena
+  License: GNU Affero General Public License Version 3
+  Full Text: See `app/LICENSE`.
+
+- `app/assets/`
+  Copyright: (c) 2025 AAL TEBİGEP
+  License: All rights reserved.
+
+- `app/style/_themes.less`
+  Copyright: (c) 2021 Catppuccin
+  License: MIT License
+  Full Text: <https://github.com/catppuccin/catppuccin/raw/main/LICENSE>
+
+- `scripts/`
+  Copyright: (c) 2025 AAL TEBİGEP, Sena
+  License: BSD Zero Clause License
+  Full Text: See `scripts/LICENSE`.

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2025 AAL TEBİGEP, Sena
+
 import { Component, ComponentType, render } from "preact";
 
 import "@app/style/main.less";

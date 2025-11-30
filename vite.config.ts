@@ -15,4 +15,7 @@ export default defineConfig({
       "@app": resolve(import.meta.dirname!, "app"),
     },
   },
+  esbuild: {
+    legalComments: "inline",
+  },
 });

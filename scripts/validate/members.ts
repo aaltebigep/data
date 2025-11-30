@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: 0BSD
+// Copyright (c) 2025 AAL TEBİGEP, Sena
+
 import { emptyValidator, schemaValidator, validateEntities } from "./common.ts";
 
 export async function validateMembers(): Promise<Map<string, string>> {

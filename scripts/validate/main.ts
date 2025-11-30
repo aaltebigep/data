@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: 0BSD
+// Copyright (c) 2025 AAL TEBİGEP, Sena
+
 import { validateMembers } from "./members.ts";
 
 const errors: Map<string, string> = new Map([

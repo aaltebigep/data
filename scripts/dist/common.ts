@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: 0BSD
+// Copyright (c) 2025 AAL TEBİGEP, Sena
+
 import { walk } from "@std/fs/walk";
 import { dirname, join, relative } from "@std/path";
 import { copy } from "@std/fs";
