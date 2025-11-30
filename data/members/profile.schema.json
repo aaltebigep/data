@@ -4,81 +4,76 @@
   "title": "Üye Profili",
   "type": "object",
   "properties": {
-    "id": {
-      "$id": "#id",
-      "type": "string",
-      "title": "ID",
-      "examples": ["ali-veli-yilmaz"]
-    },
     "name": {
       "$id": "#name",
       "type": "string",
       "title": "İsim",
       "examples": ["Ali Veli Yılmaz"]
     },
-    "title": {
-      "$id": "#title",
+    "pronouns": {
+      "$id": "#pronouns",
       "type": "string",
-      "title": "Ünvan",
-      "description": "TEBİGEP'teki ünvanlarınız ve üye olduğunuz ekipler.",
-      "examples": ["Bilişim Teknolojileri, Medya ve Tasarım"]
+      "title": "Pronouns",
+      "description": "Kullandığın pronoun listede yoksa bize ulaşabilirsin!",
+      "enum": [
+        "she/her",
+        "he/him",
+        "they/them"
+      ]
     },
     "generation": {
       "$id": "#generation",
       "type": "number",
       "title": "Dönem",
-      "description": "AAL mezuniyet yılı döneminiz.",
+      "description": "Mezun olduğun veya olacağın AAL dönemi.",
       "examples": [135]
+    },
+    "teams": {
+      "$id": "#teams",
+      "type": "array",
+      "title": "Ekipler",
+      "items": {
+        "type": "object",
+        "properties": {
+          "team": {
+            "$comment": "team",
+            "type": "string",
+            "title": "Ekip",
+            "enum": [
+              "Medya ve Tasarım",
+              "Bilişim Teknolojileri",
+              "İnsan Kaynakları",
+              "Kurumsal İlişkiler",
+              "Etkinlik Düzenleme",
+              "AB Koordinatörlüğü",
+              "Kamp Koordinatörlüğü",
+              "Mentörlük Koordinatörlüğü",
+              "Yönetim",
+              "Denetim"
+            ]
+          },
+          "role": {
+            "$comment": "role",
+            "type": "string",
+            "title": "Rol",
+            "enum": [
+              "Üye",
+              "Başkan"
+            ]
+          }
+        },
+        "required": [
+          "team",
+          "role"
+        ],
+        "additionalProperties": false
+      }
     },
     "education": {
       "$id": "#education",
       "type": "object",
       "title": "Eğitim",
       "properties": {
-        "k12": {
-          "$id": "#education/k12",
-          "type": "object",
-          "title": "Üniversite Öncesi",
-          "description": "Yalnızca lise ve altında öğrenim görmekte olan öğrenciler için. Mezun veya üniversite öğrencisi iseniz boş bırakınız.",
-          "properties": {
-            "school": {
-              "$id": "#education/k12/school",
-              "type": "string",
-              "title": "Okul",
-              "examples": ["Ankara Atatürk Lisesi"]
-            },
-            "grade": {
-              "$id": "#education/k12/grade",
-              "type": "string",
-              "title": "Sınıf Düzeyi",
-              "enum": [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "Hazırlık",
-                "9",
-                "10",
-                "11",
-                "12"
-              ]
-            },
-            "class": {
-              "$id": "#education/k12/class",
-              "type": "string",
-              "title": "Şube",
-              "examples": ["C"]
-            }
-          },
-          "required": [
-            "school"
-          ],
-          "additionalProperties": false
-        },
         "degrees": {
           "$id": "#education/degrees",
           "type": "array",
@@ -114,7 +109,7 @@
                 "$comment": "graduation",
                 "type": "number",
                 "title": "Mezuniyet Yılı",
-                "description": "Hâlâ okuyorsanız tahmini mezuniyet yılı.",
+                "description": "Hâlâ okuyorsan tahmini mezuniyet yılı.",
                 "examples": [2048]
               }
             },
@@ -139,7 +134,7 @@
           "type": "string",
           "title": "E-posta Adresi",
           "format": "email",
-          "examples": ["ali-veli-yilmaz@mail.com"]
+          "examples": ["ali-veli-yilmaz@tebimail.com"]
         },
         "github": {
           "$id": "#contact/github",
@@ -158,7 +153,6 @@
     }
   },
   "required": [
-    "id",
     "name"
   ],
   "additionalProperties": false

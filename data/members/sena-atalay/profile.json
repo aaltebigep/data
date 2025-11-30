@@ -1,8 +1,13 @@
 {
-  "id": "sena-atalay",
   "name": "Sena Atalay",
-  "title": "Bilişim Teknolojileri",
+  "pronouns": "she/her",
   "generation": 139,
+  "teams": [
+    {
+      "team": "Bilişim Teknolojileri",
+      "role": "Üye"
+    }
+  ],
   "education": {
     "degrees": [
       {

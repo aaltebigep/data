@@ -11,8 +11,16 @@ export enum InputType {
   Number = "number",
 }
 
+export enum TextFormat {
+  Text = "text",
+  Email = "email",
+  Url = "url",
+  Date = "date"
+}
+
 interface Props {
   type: InputType;
+  format?: TextFormat;
   name?: string;
   value?: any;
   required?: boolean;
@@ -43,7 +51,7 @@ export default class Input extends Component<Props> {
       case "text":
         return (
           <input
-            type="text"
+            type={this.props.format ?? "text"}
             name={this.props.name}
             value={this.props.value}
             placeholder={this.props.placeholder}

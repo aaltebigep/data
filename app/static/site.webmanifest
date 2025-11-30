@@ -3,13 +3,13 @@
   "short_name": "TEBİGEP VD",
   "icons": [
     {
-      "src": "/data/assets/icons/web-app-manifest-192x192.png",
+      "src": "https://raw.githubusercontent.com/aaltebigep/data/refs/heads/main/app/assets/icons/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/data/assets/icons/web-app-manifest-512x512.png",
+      "src": "https://raw.githubusercontent.com/aaltebigep/data/refs/heads/main/app/assets/icons/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

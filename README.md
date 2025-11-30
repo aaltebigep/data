@@ -4,4 +4,5 @@
 
 - [ ] Documentation
 - [x] Veri Düzenleyici
+  - [ ] Gelecek için boolean veri türü
 - [ ] Codeowners

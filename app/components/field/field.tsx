@@ -133,6 +133,7 @@ export default class Field extends Component<Props, State> {
               <Input
                 name={id}
                 type={InputType.Select}
+                required={this.props.required}
                 label={schema.title}
                 aria-describedby={schema.description ? `${id}-tooltip` : ""}
                 onChange={(event: any) =>
@@ -155,7 +156,9 @@ export default class Field extends Component<Props, State> {
               <Input
                 name={id}
                 type={InputType.Text}
+                format={schema.format || undefined}
                 value={this.props.value}
+                required={this.props.required}
                 label={schema.title}
                 aria-describedby={schema.description ? `${id}-tooltip` : ""}
                 placeholder={schema.examples?.[0]}
@@ -166,6 +169,7 @@ export default class Field extends Component<Props, State> {
             </div>
           );
         }
+      case "integer":
       case "number":
         return (
           <div class="field">
@@ -174,6 +178,7 @@ export default class Field extends Component<Props, State> {
               name={id}
               type={InputType.Number}
               value={this.props.value}
+              required={this.props.required}
               label={schema.title}
               aria-describedby={schema.description ? `${id}-tooltip` : ""}
               placeholder={schema.examples?.[0]}
