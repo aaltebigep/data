@@ -15,7 +15,7 @@ export enum TextFormat {
   Text = "text",
   Email = "email",
   Url = "url",
-  Date = "date"
+  Date = "date",
 }
 
 interface Props {
